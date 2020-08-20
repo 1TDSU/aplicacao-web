@@ -20,7 +20,7 @@
 		data-target="#box-login">LOGIN</button>
 
 	<div class="modal fade" role="dialog" id="box-login">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<!-- CONTEÚDO -->
 			<div class="modal-content">

@@ -55,6 +55,12 @@ public class ServletController extends HttpServlet {
 		//Utilize o response e use o método 
 		// sendRedirect(Path=caminho ou uma URI)
 		response.sendRedirect("login.jsp");
+		
+		
+		//Proxima aula - Enviar os dados com REQUEST
+		//utilizando o metodo getRequestDIspatcher(Path=caminho ou uma URI)
+		//Depois voce encaminha o Request e o RFesponse com o FORWARD
+		
 
 	}
 
