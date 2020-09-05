@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +22,7 @@ import br.com.fiap.bean.Cliente;
 		description = "Servlet controladora de acesso e fluxo de dados.", 
 		urlPatterns = { 
 				"/cliente", 
-				"/listar", 
-				"/"
+				"/listar"
 		})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +42,7 @@ public class ClienteController extends HttpServlet {
         	Cliente cli = new Cliente();
         	cli.setNome("Alexandre");
         	cli.setSobrenome("Carlos");
-        	cli.setDataNasc("21/12/1975");
+        	cli.setDataNasc("1975-12-21");
         	cli.setGenero('m');
         	cli.setTelefone("(11) 97845-6325");
         	//Adicionando na lista
@@ -53,7 +53,7 @@ public class ClienteController extends HttpServlet {
         	cli = new Cliente();
         	cli.setNome("Julia");
         	cli.setSobrenome("Alberto");
-        	cli.setDataNasc("04/04/1982");
+        	cli.setDataNasc("1982-04-03");
         	cli.setGenero('f');
         	cli.setTelefone("(48) 97568-1245");
         	//Adicionando na lista
@@ -64,7 +64,7 @@ public class ClienteController extends HttpServlet {
         	cli = new Cliente();
         	cli.setNome("Jorge");
         	cli.setSobrenome("Matheus");
-        	cli.setDataNasc("18/02/1965");
+        	cli.setDataNasc("1965-02-18");
         	cli.setGenero('m');
         	cli.setTelefone("(12) 98569-1245");
         	//Adicionando na lista
@@ -96,6 +96,23 @@ public class ClienteController extends HttpServlet {
 		lista.add(cli);
 		
 		//RECEPÇÃO DOS DADOS DO REQUEST - FIM
+		
+		//Adicionando os dados/lista no atributo do request
+		// utilizando o método setAttribute(nomeAtributo, Objeto)<-- Onde Objeto é o que
+		// armazenado no atributo.
+		request.setAttribute("listaCli", lista);
+		
+		//ENCAMINHAMENTO DO REQUEST/RESPONSE - INÍCIO
+		
+		//Criar o Dispatcher através da interface RequestDispatcher
+		//que vai receber o target do request, onde o TARGET é uma URI/URL.
+		RequestDispatcher rd = request.getRequestDispatcher("lista.jsp");
+		
+		//Devemos encaminhar de fato o
+		// request e response através do método forward.
+		rd.forward(request, response);
+		
+		//ENCAMINHAMENTO DO REQUEST/RESPONSE - FIM
 		
 		
 	}
