@@ -1,3 +1,4 @@
+<%@page import="br.com.fiap.bean.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,6 +10,14 @@
 <title>CADASTRO</title>
 </head>
 <body>
+
+
+<%
+	Cliente cli = (Cliente)request.getAttribute("cliObj");
+%>
+
+	${cliObj}
+
 
 	<header>
 		<nav></nav>
@@ -25,7 +34,7 @@
 					<div class="col-sm-8">
 						<input type="text" name="txtNm" id="idNm"
 							placeholder="Digite seu nome" required="required"
-							class="form-control">
+							class="form-control" value="<%=cli.getNome()%>">
 					</div>
 				</div>
 
@@ -34,7 +43,7 @@
 					<div class="col-sm-8">
 						<input type="text" name="txtSnm" id="idSnm"
 							placeholder="Digite seu sobrenome" required="required"
-							class="form-control">
+							class="form-control" value="<%=cli.getSobrenome()%>">
 					</div>
 				</div>
 
@@ -42,7 +51,7 @@
 					<label class="control-label col-sm-4" for="idDtNasc">Data Nascimento</label>
 					<div class="col-sm-8">
 						<input type="date" name="txtDtNasc" id="idDtNasc"
-							required="required" class="form-control">
+							required="required" class="form-control" value="<%=cli.getDataNasc()%>">
 					</div>
 				</div>
 
@@ -63,7 +72,7 @@
 					<div class="col-sm-8">
 						<input type="tel" name="txtTel" id="idTel"
 							placeholder="(xx) xxxxxx-xxxx" required="required"
-							class="form-control" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$">
+							class="form-control" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" value="<%=cli.getTelefone()%>">
 					</div>
 				</div>
 

@@ -26,6 +26,7 @@
 				<th>Dt Nasc</th>
 				<th>Gênero</th>
 				<th>Tel</th>
+				<th>Editar</th>
 			</tr>
 
 	<%
@@ -49,6 +50,7 @@
 			}
 			
 			out.println("<td>"+ cli.getTelefone() +"</td>");
+			out.println("<td><a href=listar?id-cli="+ count +">Editar</a></td>");
 			out.println("</tr>");
 			count++;
 		}
