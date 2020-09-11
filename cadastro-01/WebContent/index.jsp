@@ -11,14 +11,6 @@
 </head>
 <body>
 
-
-<%
-	Cliente cli = (Cliente)request.getAttribute("cliObj");
-%>
-
-	${cliObj}
-
-
 	<header>
 		<nav></nav>
 	</header>

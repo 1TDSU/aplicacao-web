@@ -1,6 +1,8 @@
 package br.com.fiap.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,6 +62,10 @@ public class ServletController extends HttpServlet {
 		//Proxima aula - Enviar os dados com REQUEST
 		//utilizando o metodo getRequestDIspatcher(Path=caminho ou uma URI)
 		//Depois voce encaminha o Request e o RFesponse com o FORWARD
+		
+		
+		
+		
 		
 
 	}
