@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@ include file="imports.jsp"%>
+
+	<%@ include file="imports.jsp"%>
+
 <title>INÍCIO</title>
 </head>
 <body>
