@@ -11,10 +11,12 @@
 <body>
 
 	<header>
-		<nav></nav>
+		<nav>
+			<ul><li><a href="listaall">Listar Clientes</a></ul>
+		</nav>
 	</header>
 	<div>
-		<h2>${msgStatus}</h2>
+		<h2>${param.msgStatus}</h2>
 	</div>
 	<section>
 		<form action="cliente" method="POST">

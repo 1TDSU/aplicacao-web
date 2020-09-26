@@ -1,5 +1,7 @@
 package br.com.fiap.bo;
 
+import java.util.List;
+
 import br.com.fiap.bean.Cliente;
 import br.com.fiap.dao.ClienteDAO;
 
@@ -12,6 +14,12 @@ public class ClienteBO {
 		cd = new ClienteDAO();
 		return cd.insert(cli);
 	}
+	
+	public List<Cliente> listagemCliente(){
+		cd = new ClienteDAO();
+		return cd.select();
+	}
+	
 	
 
 }

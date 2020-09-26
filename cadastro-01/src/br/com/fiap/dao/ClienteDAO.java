@@ -2,8 +2,11 @@ package br.com.fiap.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.bean.Cliente;
@@ -25,7 +28,65 @@ public class ClienteDAO {
 	}
 	
 	public List<Cliente> select(){
-		return null;
+		
+		//CRIANDO A INSTRUÇÃO SQL
+		String sql = "SELECT * FROM TBL_CLIENTE ORDER BY ID_CLI";
+		
+		//Criando a lista que vai ser retornada com todos os registros.
+		List<Cliente> lista = new ArrayList<Cliente>();
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			//Criando a conexão
+			ps = con.prepareStatement(sql);
+			
+			//Criando o ResultSet que vai armazenar o conteúdo da consulta.
+			rs = ps.executeQuery();
+			
+			//Criando uma instância da classe Cliente
+			Cliente cli = null;
+			
+			//Criando uma estrutura para ler o ResultSet	
+			while (rs.next()) {
+				//A cada iteração, será criado um novo Objeto e este será populado
+				// com os dados oriundos da base de dados.
+				cli = new Cliente();
+				cli.setNome(rs.getNString("nome_cli"));
+				cli.setSobrenome(rs.getNString("sobrenome_cli"));
+				cli.setDataNasc(new SimpleDateFormat("yyyy-MM-dd").parse(rs.getNString("data_nasc_cli")));
+				cli.setGenero(rs.getNString("genero_cli").charAt(0));
+				cli.setTelefone(rs.getNString("tel_cli"));
+				
+				//Adicionamos o objeto na lista
+				lista.add(cli);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return lista;
 	}
 	
 	public Cliente select(int idCli){
@@ -54,7 +115,7 @@ public class ClienteDAO {
 		return status;
 		
 		}catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 				
 		return 0;

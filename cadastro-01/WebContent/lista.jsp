@@ -1,7 +1,8 @@
-<%@page import="br.com.fiap.bean.Cliente"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="f" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,42 +27,29 @@
 				<th>Dt Nasc</th>
 				<th>Gênero</th>
 				<th>Tel</th>
-				<th>Editar</th>
+				<th colspan="2">Editar</th>
 			</tr>
 						
-
-	<%
-			
-		List<Cliente> lista = (List<Cliente>)request.getAttribute("listaCli");
+	<c:forEach var="cli" items="${lista_cli}" varStatus="id">
+			<tr>
+				<td>${id.count}</td>
+				<td>${cli.nome} ${cli.sobrenome}</td>
+				<td><f:formatDate value="${cli.dataNasc}" pattern="dd/MM/yyyy"/></td>
+				<td>${cli.genero}</td>
+				<td>${cli.telefone}</td>
+				<td><a href="listar?id_cli=${id.count}">Atualizar</a></td>
+				<td><a href="apagar?id_cli=${id.count}">Excluir</a></td>
+			</tr>
 		
-		int count = 1;
-	
-		for(Cliente cli : lista){
-			out.println("<tr>");
-			out.println("<td>"+ count +"</td>");
-			out.println("<td>"+ cli.getNome() +" "+ cli.getSobrenome() +"</td>");
-			out.println("<td>"+ cli.getDataNasc() +"</td>");
-			
-			if(cli.getGenero() == 'm'){
-				out.println("<td>Masculino</td>");
-			}else if(cli.getGenero() == 'f'){
-				out.println("<td>Feminino</td>");
-			}else if(cli.getGenero() == 'o'){
-				out.println("<td>Outros</td>");
-			}
-			
-			out.println("<td>"+ cli.getTelefone() +"</td>");
-			out.println("<td><a href=listar?id-cli="+ count +">Editar</a></td>");
-			out.println("</tr>");
-			count++;
-		}
-		
-	%>
+	</c:forEach>			
 			
 		</table>
 		
 	</section>
-	<footer></footer>
+	
+	<footer>
+		<h2>Info Organizacional &copy;2020</h2>
+	</footer>
 
 
 	<script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
