@@ -20,7 +20,7 @@
 	<div></div>
 	<section>
 	
-		<table border="1">
+		<table class="table table-hover">
 			<tr>
 				<th>ID</th>
 				<th>Nome</th>
@@ -35,7 +35,17 @@
 				<td>${id.count}</td>
 				<td>${cli.nome} ${cli.sobrenome}</td>
 				<td><f:formatDate value="${cli.dataNasc}" pattern="dd/MM/yyyy"/></td>
-				<td>${cli.genero}</td>
+				<c:choose>
+					<c:when test="${cli.genero eq 'm'.charAt(0)}">
+						<td>Masculino</td>
+					</c:when>
+					<c:when test="${cli.genero eq 'f'.charAt(0)}">
+						<td>Feminino</td>
+					</c:when>
+					<c:otherwise>
+						<td>Outros</td>
+					</c:otherwise>					
+				</c:choose>
 				<td>${cli.telefone}</td>
 				<td><a href="listar?id_cli=${id.count}">Atualizar</a></td>
 				<td><a href="apagar?id_cli=${id.count}">Excluir</a></td>
