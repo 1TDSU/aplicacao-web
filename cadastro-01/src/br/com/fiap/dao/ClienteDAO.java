@@ -53,6 +53,7 @@ public class ClienteDAO {
 				// A cada iteração, será criado um novo Objeto e este será populado
 				// com os dados oriundos da base de dados.
 				cli = new Cliente();
+				cli.setId(Integer.parseInt(rs.getNString("id_cli")));
 				cli.setNome(rs.getNString("nome_cli"));
 				cli.setSobrenome(rs.getNString("sobrenome_cli"));
 				cli.setDataNasc(new SimpleDateFormat("yyyy-MM-dd").parse(rs.getNString("data_nasc_cli")));
@@ -107,6 +108,7 @@ public class ClienteDAO {
 				// A cada iteração, será criado um novo Objeto e este será populado
 				// com os dados oriundos da base de dados.
 				cli = new Cliente();
+				cli.setId(Integer.parseInt(rs.getNString("id_cli")));
 				cli.setNome(rs.getNString("nome_cli"));
 				cli.setSobrenome(rs.getNString("sobrenome_cli"));
 				cli.setDataNasc(new SimpleDateFormat("yyyy-MM-dd").parse(rs.getNString("data_nasc_cli")));
@@ -164,52 +166,76 @@ public class ClienteDAO {
 	}
 
 	public int update(Cliente cli, int idCli) {
-
+		
+		String sql = null;
 		PreparedStatement ps = null;
 		int status = 0;
 		
 		try {
-			// CRIANDO A INSTRUÇÃO SQL
-			String sql = "UPDATE TBL_CLIENTE"
-					+ "SET NOME_CLI = ?, SOBRENOME_CLI = ?, DATA_NASC_CLI = TO_DATE(?,'YYYY-MM-DD'), GENERO_CLI = ?,TEL_CLI = ? "
+			
+			//Criando a instrução SQL
+			sql = "UPDATE TBL_CLIENTE SET NOME_CLI = ?, SOBRENOME_CLI = ?, "
+					+ "DATA_NASC_CLI = TO_DATE(?,'YYYY-MM-DD'), GENERO_CLI = ?, TEL_CLI = ? "
 					+ "WHERE ID_CLI = ?";
-			// CRIANDO A CONEXÃO
-			 ps = con.prepareStatement(sql);
-
-			// POPULANDO A CONEXÃO
+			
+			//Criando a conexão.
+			ps = con.prepareStatement(sql);
+			
+			//Popular a conexão com o objeto
 			ps.setString(1, cli.getNome());
 			ps.setString(2, cli.getSobrenome());
 			ps.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(cli.getDataNasc()));
 			ps.setString(4, String.valueOf(cli.getGenero()));
 			ps.setString(5, cli.getTelefone());
 			ps.setInt(6, idCli);
-
-			// EXECUTANDO A INSTRUÇÃO COM O EXECUTE-UPDATE E SE RETORNAR 1 É PORQUE FOI
-			// SUCESSO!
+			
+			//Gerando o retorno para o Status
 			status = ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return status;
-		}finally {
+			return 0;
+		} finally {
 			try {
 				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return status;
-			}
-			try {
 				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return status;
 			}
 		}
 		return status;
 	}
 
 	public int delete(int idCli) {
-		return 0;
+		
+		String sql = null;
+		PreparedStatement ps = null;
+		int status = 0;
+		
+		try {
+			//Criando a instrução SQL
+			sql = "DELETE FROM TBL_CLIENTE WHERE ID_CLI = ?";
+			
+			//Criar a conexão
+			ps = con.prepareStatement(sql);
+			
+			//Popular a conexão com o parâmetro
+			ps.setInt(1, idCli);
+			
+			//Obtendo o status
+			status = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return status;
 	}
 
 }

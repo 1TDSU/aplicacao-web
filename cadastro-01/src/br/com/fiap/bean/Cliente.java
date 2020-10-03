@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cliente {
-	
+
 	private static final long serialVersionUID = 1L;
+
+	private int id;
 	private String nome;
 	private String sobrenome;
 	private Date dataNasc;
@@ -14,16 +16,24 @@ public class Cliente {
 	private String telefone;
 
 	public Cliente() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(String nome, String sobrenome, Date dataNasc, char genero, String telefone) {
+	public Cliente(int id, String nome, String sobrenome, Date dataNasc, char genero, String telefone) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dataNasc = dataNasc;
 		this.genero = genero;
 		this.telefone = telefone;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -49,7 +59,8 @@ public class Cliente {
 	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-	//Método sobrecarregado para o parse da Data!
+
+	// Método sobrecarregado para o parse da Data!
 	public void setDataNasc(String dataNasc) {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -58,7 +69,7 @@ public class Cliente {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public char getGenero() {
 		return genero;
 	}
@@ -78,5 +89,5 @@ public class Cliente {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }

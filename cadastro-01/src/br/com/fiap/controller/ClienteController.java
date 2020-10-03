@@ -15,7 +15,7 @@ import br.com.fiap.bo.ClienteBO;
 /**
  * Servlet implementation class ClienteController
  */
-@WebServlet(urlPatterns =  {"/cliente","/listaall","/listar", "/update"})
+@WebServlet(urlPatterns =  {"/cliente","/listaall","/listar", "/update", "/excluir"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,10 +40,70 @@ public class ClienteController extends HttpServlet {
 			listarCliente(request, response);
 		}else if(request.getRequestURI().equals("/cadastro-01/listar")) {
 			listarCliente(request, response, Integer.parseInt(request.getParameter("id_cli")));
+		}else if(request.getRequestURI().equals("/cadastro-01/update")) {
+			atualizarCliente(request, response);
+		}else if(request.getRequestURI().equals("/cadastro-01/excluir")) {
+			excluirCliente(request, response);
 		}
 				
 	}
 	
+	//APAGANDO CLIENTE
+	private void excluirCliente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//Passar os dados para o BO
+		ClienteBO cb = new ClienteBO();
+		int resultado = cb.apagaCliente(Integer.parseInt(request.getParameter("id_cli")));
+		
+		//Verificação do resultado para gerar uma mensagem 
+		// para o usuário.
+		if(resultado == 1) {
+
+			//Criando um redirecionamento com parâmetros.
+			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Ex: param.nomeDoParametro
+			response.sendRedirect("index.jsp?msgStatus=Registro excluído com SUCESSO!");
+		}else {
+			//Criando um redirecionamento com parâmetros.
+			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Ex: param.nomeDoParametro
+			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar EXCLUIR o registro.");
+		}
+
+	}
+
+	//ATUALIZANDO UM CLIENTE
+	private void atualizarCliente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		//Recuperando os dados do request e adicionando em um objeto.
+		Cliente cli = null;
+		cli = new Cliente();
+		cli.setNome(request.getParameter("txtNm"));
+		cli.setSobrenome(request.getParameter("txtSnm"));
+		cli.setDataNasc(request.getParameter("txtDtNasc"));
+		cli.setGenero(request.getParameter("txtGen").charAt(0));
+		cli.setTelefone(request.getParameter("txtTel"));
+		
+		//Passar os dados para o BO
+		ClienteBO cb = new ClienteBO();
+		int resultado = cb.atualizaCliente(cli, Integer.parseInt(request.getParameter("txtIdCli")));
+		
+		//Verificação do resultado para gerar uma mensagem 
+		// para o usuário.
+		if(resultado == 1) {
+
+			//Criando um redirecionamento com parâmetros.
+			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Ex: param.nomeDoParametro
+			response.sendRedirect("index.jsp?msgStatus=Os dados foram ATUALIZADOS com SUCESSO!");
+		}else {
+			//Criando um redirecionamento com parâmetros.
+			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Ex: param.nomeDoParametro
+			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar ATUALIZAR os dados.");
+		}
+				
+	}
+
 	//LISTANDO CLIENTE BY ID
 	private void listarCliente(HttpServletRequest request, HttpServletResponse response, int idCli) throws ServletException, IOException {
 		//Instanciar a classe BO

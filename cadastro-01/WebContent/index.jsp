@@ -15,7 +15,6 @@
 			<ul class="nav">
 				<li class="nav-link"><a href="index.jsp">Início</a></li>
 				<li class="nav-link"><a href="listaall">Clientes</a></li>
-				<li class="nav-link"><a href="paulino">Clientes</a></li>
    			</ul>
 		</nav>
 	</header>

@@ -25,5 +25,15 @@ public class ClienteBO {
 		return cd.select(idCli);
 	}
 	
+	public int atualizaCliente(Cliente cli, int idCli) {
+		cd = new ClienteDAO();
+		return cd.update(cli, idCli);
+	}
+	
+	public int apagaCliente(int idCli) {
+		cd = new ClienteDAO();
+		return cd.delete(idCli);
+	}
 
+	
 }
