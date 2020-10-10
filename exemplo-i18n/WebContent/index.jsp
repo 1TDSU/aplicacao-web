@@ -13,9 +13,9 @@
 <body>
 	
 	<div>
-		<a href="change.jsp?lingua=de"><img src="./img/germany.png"></a>
-		<a href="change.jsp?lingua=pt_BR"><img src="./img/brazil.png"></a>
-		<a href="change.jsp?lingua=en"><img src="./img/united.png"></a>
+		<a href="change?lingua=de"><img src="./img/germany.png"></a>
+		<a href="change?lingua=pt_BR"><img src="./img/brazil.png"></a>
+		<a href="change?lingua=en"><img src="./img/united.png"></a>
 	</div>
 	
 	<h1><f:message key="saudacao"/></h1>

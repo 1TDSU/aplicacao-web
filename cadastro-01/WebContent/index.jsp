@@ -1,20 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="f" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
-<title>CADASTRO</title>
+<title><f:message key="site.titulo"/></title>
 </head>
 <body>
 
 	<header>
 		<nav>
 			<ul class="nav">
-				<li class="nav-link"><a href="index.jsp">Início</a></li>
-				<li class="nav-link"><a href="listaall">Clientes</a></li>
+				<li class="nav-link"><a href="index.jsp"><f:message key="site.menu.header.inicio"/></a></li>
+				<li class="nav-link"><a href="listaall"><f:message key="site.menu.header.clientes"/></a></li>
    			</ul>
 		</nav>
 	</header>
@@ -24,11 +28,10 @@
 	<section>
 		<form action="cliente" method="POST">
 			<fieldset>
-				<legend>Cadastro de Clientes</legend>
+				<legend><f:message key="site.form.cadastro.legenda"/></legend>
 				
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idNm">Nome
-						Cliente</label>
+					<label class="control-label col-sm-4" for="idNm"><f:message key="site.form.cadastro.label.nome"/></label>
 					<div class="col-sm-8">
 						<input type="text" name="txtNm" id="idNm"
 							placeholder="Digite seu nome" required="required"
@@ -37,7 +40,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idSnm">Sobrenome</label>
+					<label class="control-label col-sm-4" for="idSnm"><f:message key="site.form.cadastro.label.sobrenome"/></label>
 					<div class="col-sm-8">
 						<input type="text" name="txtSnm" id="idSnm"
 							placeholder="Digite seu sobrenome" required="required"
@@ -46,7 +49,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idDtNasc">Data Nascimento</label>
+					<label class="control-label col-sm-4" for="idDtNasc"><f:message key="site.form.cadastro.label.data_nasc"/></label>
 					<div class="col-sm-8">
 						<input type="date" name="txtDtNasc" id="idDtNasc"
 							required="required" class="form-control" value="">
@@ -54,19 +57,19 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idGen">Gênero</label>
+					<label class="control-label col-sm-4" for="idGen"><f:message key="site.form.cadastro.label.genero"/></label>
 					<div class="col-sm-8">
 						<select name="txtGen" id="idGen" required="required" class="form-control">
-							<option value="0" selected="selected">Selecione uma opção.</option>
-							<option value="m">Masculino</option>
-							<option value="f">Feminino</option>
-							<option value="o">Outros</option>
+							<option value="0" selected="selected"><f:message key="site.form.cadastro.select.option.sel"/></option>
+							<option value="m"><f:message key="site.form.cadastro.select.option.m"/></option>
+							<option value="f"><f:message key="site.form.cadastro.select.option.f"/></option>
+							<option value="o"><f:message key="site.form.cadastro.select.option.o"/></option>
 						</select>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idTel">Telefone</label>
+					<label class="control-label col-sm-4" for="idTel"><f:message key="site.form.cadastro.label.telefone"/></label>
 					<div class="col-sm-8">
 						<input type="tel" name="txtTel" id="idTel"
 							placeholder="(xx) xxxxxx-xxxx" required="required"
@@ -76,7 +79,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+						<button type="submit" class="btn btn-success btn-lg"><f:message key="site.form.cadastro.button.enviar"/></button>
 					</div>
 				</div>
 			</fieldset>
