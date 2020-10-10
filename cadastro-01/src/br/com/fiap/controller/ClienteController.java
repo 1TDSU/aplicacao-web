@@ -33,8 +33,8 @@ public class ClienteController extends HttpServlet {
 		
 		//Request do FORM da index.jsp
 		if (request.getRequestURI().equals("/cadastro-01/cliente")) {
-			//Realizando a chamada para o método inserirCliente
-			// e passando os prâmetros request e response.
+			//Realizando a chamada para o mï¿½todo inserirCliente
+			// e passando os prï¿½metros request e response.
 			inserirCliente(request, response);
 		}else if(request.getRequestURI().equals("/cadastro-01/listaall")) {
 			listarCliente(request, response);
@@ -54,17 +54,17 @@ public class ClienteController extends HttpServlet {
 		ClienteBO cb = new ClienteBO();
 		int resultado = cb.apagaCliente(Integer.parseInt(request.getParameter("id_cli")));
 		
-		//Verificação do resultado para gerar uma mensagem 
-		// para o usuário.
+		//Verificaï¿½ï¿½o do resultado para gerar uma mensagem 
+		// para o usuï¿½rio.
 		if(resultado == 1) {
 
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Registro excluído com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=Registro excluÃ­do com SUCESSO!");
 		}else {
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
 			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar EXCLUIR o registro.");
 		}
@@ -87,17 +87,17 @@ public class ClienteController extends HttpServlet {
 		ClienteBO cb = new ClienteBO();
 		int resultado = cb.atualizaCliente(cli, Integer.parseInt(request.getParameter("txtIdCli")));
 		
-		//Verificação do resultado para gerar uma mensagem 
-		// para o usuário.
+		//Verificaï¿½ï¿½o do resultado para gerar uma mensagem 
+		// para o usuï¿½rio.
 		if(resultado == 1) {
 
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
 			response.sendRedirect("index.jsp?msgStatus=Os dados foram ATUALIZADOS com SUCESSO!");
 		}else {
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
 			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar ATUALIZAR os dados.");
 		}
@@ -115,11 +115,11 @@ public class ClienteController extends HttpServlet {
 			request.setAttribute("objCli", cli);
 			request.setAttribute("objIdCli", idCli);
 			
-			//Realizar o encaminhamento para a página atualiza.jsp.
+			//Realizar o encaminhamento para a pï¿½gina atualiza.jsp.
 			request.getRequestDispatcher("atualiza.jsp").forward(request, response);
 		}else{
-			//Criando um parâmetro no com uma mensagem de erro para a página JSP index.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro com a seleção atual.");
+			//Criando um parï¿½metro no com uma mensagem de erro para a pï¿½gina JSP index.
+			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro com a seleï¿½ï¿½o atual.");
 		}
 
 	}
@@ -142,22 +142,22 @@ public class ClienteController extends HttpServlet {
 		ClienteBO cb = new ClienteBO();
 		int resultado = cb.cadastroCliente(cli);
 		
-		//Verificação do resultado para gerar uma mensagem 
-		// para o usuário.
+		//Verificaï¿½ï¿½o do resultado para gerar uma mensagem 
+		// para o usuï¿½rio.
 		if(resultado == 1) {
 			//Criando um atributo no request e enviando para a index.jsp
 			//request.setAttribute("msgStatus", "Os dados foram gravados com SUCESSO!");
 			
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
 			response.sendRedirect("index.jsp?msgStatus=Os dados foram gravados com SUCESSO!");
 		}else {
 			//Caso ocorra algum problema envie uma mensagem de erro.
 			//request.setAttribute("msgStatus", "Ocorreu um erro ao gravar os dados.");
 			
-			//Criando um redirecionamento com parâmetros.
-			//Obs:Para carregar parâmetros no JSP é necessário utilizarmos o escopo PARAM
+			//Criando um redirecionamento com parï¿½metros.
+			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
 			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao gravar os dados.");
 		}
@@ -178,10 +178,10 @@ public class ClienteController extends HttpServlet {
 			//Criando um atributo no request  com a lista de clientes
 			request.setAttribute("lista_cli", lista);
 			
-			//Realizar o encaminhamento para a página lista.jsp para carregar a lista de clientes.
+			//Realizar o encaminhamento para a pï¿½gina lista.jsp para carregar a lista de clientes.
 			request.getRequestDispatcher("/WEB-INF/lista.jsp").forward(request, response);
 		}else{
-			//Criando um parâmetro no com uma mensagem de erro para a página JSP index.
+			//Criando um parï¿½metro no com uma mensagem de erro para a pï¿½gina JSP index.
 			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro com a listagem dos clientes!");
 		}
 	}
