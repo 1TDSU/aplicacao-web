@@ -23,7 +23,9 @@
 		</nav>
 	</header>
 	<div>
-		<h2>${param.msgStatus}</h2>
+		<c:if test="${not empty param.msgStatus}">
+			<h2><f:message key="site.msg.${param.msgStatus}"/></h2>
+		</c:if>
 	</div>
 	<section>
 		<form action="cliente" method="POST">

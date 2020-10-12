@@ -61,12 +61,12 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Registro excluído com SUCESSO!");
+			response.sendRedirect("index.jsp?del");
 		}else {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar EXCLUIR o registro.");
+			response.sendRedirect("index.jsp?msgStatus=err_del");
 		}
 
 	}
@@ -94,12 +94,12 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Os dados foram ATUALIZADOS com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=upd");
 		}else {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar ATUALIZAR os dados.");
+			response.sendRedirect("index.jsp?msgStatus=err_upd");
 		}
 				
 	}
@@ -119,7 +119,7 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("atualiza.jsp").forward(request, response);
 		}else{
 			//Criando um par�metro no com uma mensagem de erro para a p�gina JSP index.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro com a sele��o atual.");
+			response.sendRedirect("index.jsp?msgStatus=err_list");
 		}
 
 	}
@@ -151,7 +151,7 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Os dados foram gravados com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=ins");
 		}else {
 			//Caso ocorra algum problema envie uma mensagem de erro.
 			//request.setAttribute("msgStatus", "Ocorreu um erro ao gravar os dados.");
@@ -159,7 +159,7 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com par�metros.
 			//Obs:Para carregar par�metros no JSP � necess�rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao gravar os dados.");
+			response.sendRedirect("index.jsp?err_ins");
 		}
 		
 		//REALIZANDO O ENCAMINHAMENTO.
@@ -182,7 +182,7 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/lista.jsp").forward(request, response);
 		}else{
 			//Criando um par�metro no com uma mensagem de erro para a p�gina JSP index.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro com a listagem dos clientes!");
+			response.sendRedirect("index.jsp?msgStatus=err_list_by_id");
 		}
 	}
 
