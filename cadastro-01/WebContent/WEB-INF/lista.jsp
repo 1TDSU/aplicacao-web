@@ -9,25 +9,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
-<title>LISTA</title>
+<title><f:message key="site.lista.titulo"/></title>
 </head>
 <body>
 
+	<%@ include file="./snippet/menu/menu-header.jsp" %>
 
-	<header>
-		<nav></nav>
-	</header>
-	<div></div>
 	<section>
 	
 		<table class="table table-hover table-dark">
 			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Dt Nasc</th>
-				<th>Gênero</th>
-				<th>Tel</th>
-				<th colspan="2">Editar</th>
+				<th><f:message key="site.tabela.cabecalho.id"/></th>
+				<th><f:message key="site.tabela.cabecalho.nome"/></th>
+				<th><f:message key="site.tabela.cabecalho.dt_nasc"/></th>
+				<th><f:message key="site.tabela.cabecalho.genero"/></th>
+				<th><f:message key="site.tabela.cabecalho.telefone"/></th>
+				<th colspan="2"><f:message key="site.tabela.cabecalho.editar"/></th>
 			</tr>
 						
 	<c:forEach var="cli" items="${lista_cli}" varStatus="id">
@@ -58,9 +55,8 @@
 	</section>
 	
 	<footer>
-		<h2>Info Organizacional &copy;2020</h2>
+		<h2><f:message key="site.rodape.info.organizacao"/></h2>
 	</footer>
-
 
 	<script type="text/javascript" src="./js/jquery-3.5.1.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.js"></script>

@@ -2,12 +2,14 @@ package br.com.fiap.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import br.com.fiap.bean.Cliente;
 import br.com.fiap.bo.ClienteBO;
@@ -15,7 +17,7 @@ import br.com.fiap.bo.ClienteBO;
 /**
  * Servlet implementation class ClienteController
  */
-@WebServlet(urlPatterns =  {"/cliente","/listaall","/listar", "/update", "/excluir"})
+@WebServlet(urlPatterns =  {"/cliente","/listaall","/listar", "/update", "/excluir", "/auxiliar"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,23 +33,53 @@ public class ClienteController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Request do FORM da index.jsp
-		if (request.getRequestURI().equals("/cadastro-01/cliente")) {
-			//Realizando a chamada para o mï¿½todo inserirCliente
-			// e passando os prï¿½metros request e response.
+		switch (request.getRequestURI()) {
+		case "/cadastro-01/cliente":
+			//Realizando a chamada para o método inserirCliente
+			// e passando os parâmetros request e response.
 			inserirCliente(request, response);
-		}else if(request.getRequestURI().equals("/cadastro-01/listaall")) {
+			break;
+
+		case "/cadastro-01/listaall":
 			listarCliente(request, response);
-		}else if(request.getRequestURI().equals("/cadastro-01/listar")) {
+			break;
+			
+		case "/cadastro-01/listar":
 			listarCliente(request, response, Integer.parseInt(request.getParameter("id_cli")));
-		}else if(request.getRequestURI().equals("/cadastro-01/update")) {
+			break;
+
+		case "/cadastro-01/update":
 			atualizarCliente(request, response);
-		}else if(request.getRequestURI().equals("/cadastro-01/excluir")) {
+			break;
+
+		case "/cadastro-01/excluir":
 			excluirCliente(request, response);
+			break;
+
+		case "/cadastro-01/auxiliar":
+			alteraLingua(request, response);
+			break;
+			
+		default:
+			response.sendRedirect("index.jsp");
 		}
+		
 				
 	}
 	
+	public void alteraLingua(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		//Recuperando o parâmetro Locale que vêm da página selecionada pelo usuário.
+		Locale locale = new Locale(req.getParameter("lingua"));
+		
+		//Realizando as alterções no Locale do sistema e do usuário.
+		Config.set(req.getSession(), Config.FMT_LOCALE, locale);
+		//Realizando as alterções no Locale do usuário e do usuário.
+		Config.set(req.getSession(), Config.FMT_FALLBACK_LOCALE, locale);
+		
+		resp.sendRedirect("index.jsp");
+	}
+
 	//APAGANDO CLIENTE
 	private void excluirCliente(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//Passar os dados para o BO
@@ -61,12 +93,12 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?del");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.del");
 		}else {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=err_del");
+			response.sendRedirect("index.jsp?msgStatus=erro.del_err");
 		}
 
 	}
@@ -94,12 +126,12 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=upd");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.upd");
 		}else {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=err_upd");
+			response.sendRedirect("index.jsp?msgStatus=erro.upd_err");
 		}
 				
 	}
@@ -119,7 +151,7 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("atualiza.jsp").forward(request, response);
 		}else{
 			//Criando um parï¿½metro no com uma mensagem de erro para a pï¿½gina JSP index.
-			response.sendRedirect("index.jsp?msgStatus=err_list");
+			response.sendRedirect("index.jsp?msgStatus=erro.list_err");
 		}
 
 	}
@@ -151,7 +183,7 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?msgStatus=ins");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.ins");
 		}else {
 			//Caso ocorra algum problema envie uma mensagem de erro.
 			//request.setAttribute("msgStatus", "Ocorreu um erro ao gravar os dados.");
@@ -159,7 +191,7 @@ public class ClienteController extends HttpServlet {
 			//Criando um redirecionamento com parï¿½metros.
 			//Obs:Para carregar parï¿½metros no JSP ï¿½ necessï¿½rio utilizarmos o escopo PARAM
 			//Ex: param.nomeDoParametro
-			response.sendRedirect("index.jsp?err_ins");
+			response.sendRedirect("index.jsp?msgStatus=erro.ins_err");
 		}
 		
 		//REALIZANDO O ENCAMINHAMENTO.
@@ -182,7 +214,7 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/lista.jsp").forward(request, response);
 		}else{
 			//Criando um parï¿½metro no com uma mensagem de erro para a pï¿½gina JSP index.
-			response.sendRedirect("index.jsp?msgStatus=err_list_by_id");
+			response.sendRedirect("index.jsp?msgStatus=erro.list_err");
 		}
 	}
 

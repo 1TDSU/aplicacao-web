@@ -10,22 +10,24 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
-<title><f:message key="site.titulo"/></title>
+<title><f:message key="site.cadastro.titulo"/></title>
 </head>
 <body>
 
-	<header>
-		<nav>
-			<ul class="nav">
-				<li class="nav-link"><a href="index.jsp"><f:message key="site.menu.header.inicio"/></a></li>
-				<li class="nav-link"><a href="listaall"><f:message key="site.menu.header.clientes"/></a></li>
-   			</ul>
-		</nav>
-	</header>
+	<div>
+		<a href="auxiliar?lingua=pt-br"><img src="./img/brazil.png"></a>
+		<a href="auxiliar?lingua=en"><img src="./img/united.png"></a>
+		<a href="auxiliar?lingua=de"><img src="./img/germany.png"></a>
+		<a href="auxiliar?lingua=fr"><img src="./img/france.png"></a>
+	</div>
+
+	<%@ include file="./WEB-INF/snippet/menu/menu-header.jsp" %>
+	
 	<div>
 		<c:if test="${not empty param.msgStatus}">
-			<h2><f:message key="site.msg.${param.msgStatus}"/></h2>
+			<h2><f:message key="site.paginas.index.${param.msgStatus}"/></h2>
 		</c:if>
+		
 	</div>
 	<section>
 		<form action="cliente" method="POST">
@@ -36,7 +38,7 @@
 					<label class="control-label col-sm-4" for="idNm"><f:message key="site.form.cadastro.label.nome"/></label>
 					<div class="col-sm-8">
 						<input type="text" name="txtNm" id="idNm"
-							placeholder="Digite seu nome" required="required"
+							placeholder="<f:message key='site.form.cadastro.placeholder.nome'/>" required="required"
 							class="form-control" value="">
 					</div>
 				</div>
@@ -45,7 +47,7 @@
 					<label class="control-label col-sm-4" for="idSnm"><f:message key="site.form.cadastro.label.sobrenome"/></label>
 					<div class="col-sm-8">
 						<input type="text" name="txtSnm" id="idSnm"
-							placeholder="Digite seu sobrenome" required="required"
+							placeholder="<f:message key='site.form.cadastro.placeholder.sobrenome'/>" required="required"
 							class="form-control" value="">
 					</div>
 				</div>
@@ -81,7 +83,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-success btn-lg"><f:message key="site.form.cadastro.button.enviar"/></button>
+						<button type="submit" class="btn btn-success btn-lg"><f:message key="site.form.cadastro.button.cadastrar"/></button>
 					</div>
 				</div>
 			</fieldset>
