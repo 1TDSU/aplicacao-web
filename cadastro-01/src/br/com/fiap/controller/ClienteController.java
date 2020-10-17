@@ -168,7 +168,7 @@ public class ClienteController extends HttpServlet {
 		cli.setGenero(request.getParameter("txtGen").charAt(0));
 		cli.setTelefone(request.getParameter("txtTel"));
 		
-		System.out.println("TESTE : " + cli.getNome());
+		//System.out.println("TESTE : " + cli.getNome());
 		
 		//Passar os dados para o BO
 		ClienteBO cb = new ClienteBO();
